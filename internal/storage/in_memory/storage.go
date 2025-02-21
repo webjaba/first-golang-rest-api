@@ -34,6 +34,16 @@ func (s *Storage) GetTask(id int) (*storage.Task, error) {
 	return &task, nil
 }
 
+func (s *Storage) GetAllTasks() []storage.Task {
+	result := []storage.Task{}
+
+	for _, task := range s.Tasks {
+		result = append(result, task)
+	}
+
+	return result
+}
+
 func (s *Storage) DeleteTask(id int) error {
 	_, exists := s.Tasks[id]
 
