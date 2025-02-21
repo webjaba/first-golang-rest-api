@@ -11,7 +11,7 @@ var (
 )
 
 type Task struct {
-	ID          int    `json:"id"`
+	ID          int    `json:"id,omitempty"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Done        bool   `json:"done,omitempty"`

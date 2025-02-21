@@ -6,10 +6,11 @@ import (
 
 type Storage struct {
 	Tasks map[int]storage.Task
+	MaxID int
 }
 
 func NewStorage() *Storage {
-	return &Storage{Tasks: make(map[int]storage.Task)}
+	return &Storage{Tasks: make(map[int]storage.Task), MaxID: 1}
 }
 
 func (s *Storage) AddOrReplaceTask(jsonObj []byte) error {
@@ -17,6 +18,11 @@ func (s *Storage) AddOrReplaceTask(jsonObj []byte) error {
 
 	if err != nil {
 		return err
+	}
+
+	if task.ID == 0 {
+		task.ID = s.MaxID
+		s.MaxID++
 	}
 
 	s.Tasks[task.ID] = task
