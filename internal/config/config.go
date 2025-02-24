@@ -16,11 +16,11 @@ func New() *Config {
 	configPath := os.Getenv("CONFIG_PATH")
 
 	if configPath == "" {
-		// log.Fatal("CONFIG_PATH is not set")
+		log.Fatal("CONFIG_PATH is not set")
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		// log.Fatalf("config file does not exists: %s", configPath)
+		log.Fatalf("config file does not exists: %s", configPath)
 	}
 
 	cfg := Config{}
